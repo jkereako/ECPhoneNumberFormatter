@@ -42,8 +42,8 @@
 
 - (NSString *)stringForObjectValue:(id)anObject {
     return [self stringForObjectValue:anObject withFormat:ECPhoneNumberFormatBrackets];
-    }
-            
+}
+
 - (NSString *)stringForObjectValue:(id)anObject withFormat:(ECPhoneNumberFormat)phoneNumberFormat {
     if (![anObject isKindOfClass:[NSString class]]) return nil;
     if ([anObject length] < 1) return nil;
@@ -63,12 +63,12 @@
     return output;
 }
 
-- (BOOL)getObjectValue:(id *)anObject forString:(NSString *)string errorDescription:(NSString **)error {
-    *anObject = (id)[self stripNonDigits:string];
+- (BOOL)getObjectValue:(out __autoreleasing id *)obj forString:(NSString *)string errorDescription:(out NSString *__autoreleasing * __unused)error {
+    *obj = (id)[self stripNonDigits:string];
     return YES;
 }
 
-- (BOOL)isPartialStringValid:(NSString **)partialStringPtr proposedSelectedRange:(NSRangePointer)proposedSelRangePtr originalString:(NSString *)origString originalSelectedRange:(NSRange)origSelRange errorDescription:(NSString **)error {
+- (BOOL)isPartialStringValid:(NSString *__autoreleasing *)partialStringPtr proposedSelectedRange:(NSRangePointer)proposedSelRangePtr originalString:(NSString *)origString originalSelectedRange:(NSRange)origSelRange errorDescription:(NSString *__autoreleasing * __unused)error  {
     NSString *formattedOld      = origString;
     NSString *proposedNewString = *partialStringPtr;
     NSString *formattedNew      = [self stringForObjectValue:proposedNewString];
@@ -144,7 +144,7 @@
     if (len >= 8) {
         NSString *areaCode  = [obj substringToIndex:3];
         NSString *lastSeven = [self parseLastSevenDigits:[obj substringFromIndex:3]];
-        
+
         if ( phoneNumberFormat == ECPhoneNumberFormatBrackets ) {
             output = [NSString stringWithFormat:@"(%@) %@", areaCode, lastSeven];
         } else {
@@ -165,7 +165,7 @@
     for (i = 0; i < numSpaces; i++) {
         [partialAreaCode appendString:@" "];
     }
-    
+
     if ( phoneNumberFormat == ECPhoneNumberFormatBrackets ) {
         output = [NSString stringWithFormat:@"1 (%@)", partialAreaCode];
     } else {
@@ -187,7 +187,7 @@
     } else {
         output = [NSString stringWithFormat:@"%@", [self parsePartialStringStartingWithOne:input withFormat:phoneNumberFormat]];
     }
-
+    
     return output;
 }
 
