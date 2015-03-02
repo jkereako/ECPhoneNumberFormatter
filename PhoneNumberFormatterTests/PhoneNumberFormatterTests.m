@@ -10,6 +10,9 @@
 @import XCTest;
 #import "ECPhoneNumberFormatter.h"
 
+/**
+ Currently, this only tests the US phone number format.
+ */
 @interface PhoneNumberFormatterTests : XCTestCase
 
 @property (nonatomic, readwrite) ECPhoneNumberFormatter *phoneNumberFormatter;
@@ -32,6 +35,30 @@
     [super tearDown];
 }
 
+- (void)testThatNilIsNil {
+    NSString *unformattedPhoneNumber;
+    NSString *formattedPhoneNumber = [self.phoneNumberFormatter stringForObjectValue:unformattedPhoneNumber];
+    XCTAssertNil(formattedPhoneNumber);
+}
+
+- (void)testThatAnEmptyStringIsNil {
+    NSString *unformattedPhoneNumber = @"";
+    NSString *formattedPhoneNumber = [self.phoneNumberFormatter stringForObjectValue:unformattedPhoneNumber];
+    XCTAssertNil(formattedPhoneNumber);
+}
+
+- (void)testThatAnBlankStringIsNil {
+    NSString *unformattedPhoneNumber = @" ";
+    NSString *formattedPhoneNumber = [self.phoneNumberFormatter stringForObjectValue:unformattedPhoneNumber];
+    XCTAssertNil(formattedPhoneNumber);
+}
+
+- (void)testThatAnObjectWhichIsNotAStringIsNil {
+    NSValue *value = [NSValue valueWithCGPoint:CGPointMake(10.0f, 10.0f)];
+    NSString *formattedPhoneNumber = [self.phoneNumberFormatter stringForObjectValue:value];
+    XCTAssertNil(formattedPhoneNumber);
+}
+
 - (void)testThatAStringLackingDigitsIsNil {
     NSString *unformattedPhoneNumber = @"This (string) ought to be nil!";
     NSString *formattedPhoneNumber = [self.phoneNumberFormatter stringForObjectValue:unformattedPhoneNumber];
@@ -52,7 +79,7 @@
     XCTAssertEqualObjects(formattedPhoneNumber, @"867-5309");
 }
 
-- (void)testThatABadlyformatted7DigitPhoneNumberIsProperlyFormatted {
+- (void)testThatAPoorlyFormatted7DigitPhoneNumberIsProperlyFormatted {
     NSString *unformattedPhoneNumber = @"(867)-5309)";
     NSString *formattedPhoneNumber = [self.phoneNumberFormatter stringForObjectValue:unformattedPhoneNumber];
     XCTAssertEqualObjects(formattedPhoneNumber, @"867-5309");
@@ -60,6 +87,12 @@
 
 - (void)testThatAnUnformatted10DigitPhoneNumberIsProperlyFormatted {
     NSString *unformattedPhoneNumber = @"2348675309";
+    NSString *formattedPhoneNumber = [self.phoneNumberFormatter stringForObjectValue:unformattedPhoneNumber];
+    XCTAssertEqualObjects(formattedPhoneNumber, @"(234) 867-5309");
+}
+
+- (void)testThatAPoorlyFormatted10DigitPhoneNumberIsProperlyFormatted {
+    NSString *unformattedPhoneNumber = @"(23.4)867)-  5309)";
     NSString *formattedPhoneNumber = [self.phoneNumberFormatter stringForObjectValue:unformattedPhoneNumber];
     XCTAssertEqualObjects(formattedPhoneNumber, @"(234) 867-5309");
 }
