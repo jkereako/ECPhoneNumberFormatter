@@ -15,6 +15,7 @@
 		36E298F21AA4F17B0093696A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E298F01AA4F17B0093696A /* LaunchScreen.xib */; };
 		36E298FE1AA4F17B0093696A /* PhoneNumberFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E298FD1AA4F17B0093696A /* PhoneNumberFormatterTests.m */; };
 		36E2990A1AA4F4080093696A /* ECPhoneNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E299091AA4F4080093696A /* ECPhoneNumberFormatter.m */; };
+		36E2990B1AA5033D0093696A /* ECPhoneNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E299091AA4F4080093696A /* ECPhoneNumberFormatter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		36E298FD1AA4F17B0093696A /* PhoneNumberFormatterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhoneNumberFormatterTests.m; sourceTree = "<group>"; };
 		36E299081AA4F4080093696A /* ECPhoneNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECPhoneNumberFormatter.h; sourceTree = "<group>"; };
 		36E299091AA4F4080093696A /* ECPhoneNumberFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECPhoneNumberFormatter.m; sourceTree = "<group>"; };
+		36E2990D1AA5035D0093696A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		36E2990F1AA503630093696A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +93,8 @@
 				36E298E81AA4F17B0093696A /* ViewController.h */,
 				36E298E91AA4F17B0093696A /* ViewController.m */,
 				36E298EB1AA4F17B0093696A /* Main.storyboard */,
-				36E298EE1AA4F17B0093696A /* Images.xcassets */,
 				36E298F01AA4F17B0093696A /* LaunchScreen.xib */,
+				36E298EE1AA4F17B0093696A /* Images.xcassets */,
 				36E298E11AA4F17B0093696A /* Supporting Files */,
 			);
 			path = PhoneNumberFormatter;
@@ -176,6 +179,7 @@
 		36E298D61AA4F17B0093696A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = AD;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Alexis Digital";
 				TargetAttributes = {
@@ -243,6 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36E2990B1AA5033D0093696A /* ECPhoneNumberFormatter.m in Sources */,
 				36E298FE1AA4F17B0093696A /* PhoneNumberFormatterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,6 +267,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				36E298EC1AA4F17B0093696A /* Base */,
+				36E2990F1AA503630093696A /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -270,6 +276,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				36E298F11AA4F17B0093696A /* Base */,
+				36E2990D1AA5035D0093696A /* en */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
